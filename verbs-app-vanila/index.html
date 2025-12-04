@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irregular Verbs Trainer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
+</head>
+<body>
+
+    <div class="menu-wrapper">
+        <button type="button" class="menu-btn" id="menu-btn" aria-haspopup="true" aria-expanded="false" aria-label="История">
+            <span class="material-icons-round" aria-hidden="true">menu</span>
+        </button>
+        <div class="menu-dropdown hidden" id="menu-dropdown" role="menu">
+            <button type="button" class="menu-item" id="menu-history" role="menuitem">История</button>
+        </div>
+    </div>
+
+    <h1 class="page-title">Проверка глаголов</h1>
+
+    <div class="settings-bar" role="region" aria-label="Панель настроек">
+        <div class="settings-row settings-controls">
+            <label for="word-list">Набор слов:</label>
+            <select id="word-list">
+                <option value="default">100 неправильных глаголов</option>
+                <option value="extended">200 неправильных глаголов</option>
+            </select>
+        </div>
+
+        <div class="settings-row settings-lang">
+            <label for="speech-lang">Язык озвучки:</label>
+            <select id="speech-lang">
+                <option value="en-US">English (US)</option>
+                <option value="en-GB">English (UK)</option>
+                <option value="en-AU">English (AU)</option>
+                <option value="ru-RU">Русский</option>
+            </select>
+        </div>
+
+        <div class="settings-row settings-controls">
+            <label for="word-count">Сколько слов проверить:</label>
+            <div class="settings-input-group">
+                <input type="number" id="word-count" value="10" min="1">
+                <button type="button" class="max-btn" id="max-btn" aria-label="Выбрать максимум слов">Все</button>
+                <button id="start-btn" class="primary-btn">Начать</button>
+            </div>
+        </div>
+
+        <div class="settings-row settings-footer">
+            <span class="total-counter">Всего слов: <strong id="total-words-count">0</strong></span>
+        </div>
+    </div>
+
+    <div class="container hidden" id="main-content">
+        <div id="game-screen" class="screen">
+            <div class="progress">
+                <button type="button" class="progress-restart-btn" id="progress-restart-btn" aria-label="Начать заново">⟳</button>
+                <span class="progress-text">Слово <span id="current-step">1</span> из <span id="total-step">10</span></span>
+                <button type="button" class="progress-stop-btn" id="stop-btn" aria-label="Завершить тренировку">✕</button>
+            </div>
+            
+            <div class="card">
+                <div class="verb-translation" id="verb-translation">Translation</div>
+                <div class="verb-infinitive-row">
+                    <div class="verb-infinitive" id="verb-base">be</div>
+                    <button type="button" class="audio-btn" id="base-audio-btn" aria-label="Озвучить инфинитив">🔊</button>
+                </div>
+                <div class="verb-transcription" id="verb-transcription-1">[biː]</div>
+            </div>
+
+            <p class="instruction">Введите две формы через пробел:</p>
+            <input type="text" id="user-input" placeholder="например: was/were been" autocomplete="off">
+            
+            <button id="check-btn" class="primary-btn">Проверить</button>
+
+            <div id="feedback" class="feedback hidden">
+                <h3 id="feedback-message"></h3>
+                
+                <div class="correct-answer-block">
+                    <div class="answer-row">
+                        <span class="label">Past Simple:</span>
+                        <span class="val" id="correct-ps">was/were</span>
+                        <span class="trans" id="trans-ps">[wɒz]</span>
+                        <button type="button" class="audio-btn" id="ps-audio-btn" aria-label="Озвучить Past Simple">🔊</button>
+                    </div>
+                    <div class="answer-row">
+                        <span class="label">Participle:</span>
+                        <span class="val" id="correct-pp">been</span>
+                        <span class="trans" id="trans-pp">[biːn]</span>
+                        <button type="button" class="audio-btn" id="pp-audio-btn" aria-label="Озвучить Past Participle">🔊</button>
+                    </div>
+                </div>
+
+                <button id="next-btn" class="secondary-btn">Дальше →</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <h2>Тест завершен!</h2>
+            <div class="score-circle">
+                <span id="final-score">0</span> / <span id="final-total">0</span>
+            </div>
+            <p id="final-msg">Отличный результат!</p>
+            <button id="restart-btn" class="primary-btn">Попробовать снова</button>
+        </div>
+    </div>
+
+    <div class="history-modal hidden" id="history-modal" role="dialog" aria-modal="true" aria-labelledby="history-title">
+        <div class="history-dialog">
+            <div class="history-dialog-header">
+                <h2 id="history-title">История результатов</h2>
+                <button type="button" class="history-close" id="history-close" aria-label="Закрыть">✕</button>
+            </div>
+            <div class="history-dialog-body">
+                <ul class="history-list" id="history-list">
+                    <li class="history-empty">Пока нет сохранённых результатов.</li>
+                </ul>
+            </div>
+            <div class="history-dialog-footer">
+                <button type="button" class="history-clear-btn" id="history-clear">Очистить</button>
+            </div>
+        </div>
+    </div>
+    <div class="history-backdrop hidden" id="history-backdrop"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
