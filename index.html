@@ -76,6 +76,27 @@
             }
         }
 
+        /* Ссылка в верхнем левом углу */
+        .app-link {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            z-index: 20;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
         /* Адаптивность */
         @media (max-width: 768px) {
             h1 {
@@ -84,10 +105,16 @@
             p {
                 font-size: 1rem;
             }
+            .app-link {
+                font-size: 0.9rem;
+                top: 1rem;
+                left: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <a href="/verbs-app-vanila" class="app-link">Verbs App</a>
     <div class="container">
         <h1>Welcome</h1>
     </div>
